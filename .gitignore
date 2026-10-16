@@ -1,0 +1,7 @@
+.DS_Store
+.idea/
+.vscode/
+*.private.sql
+uploads/users/*/profile/
+uploads/tmp/*
+!uploads/tmp/index.html

@@ -1,0 +1,35 @@
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+RewriteEngine on
+RewriteRule ^pages/([0-9]+)/(.*)/?$ pages.php?id=$1&t=$2 [NC,L]
+
+RewriteRule ^myquizzes/?$ quizzes.php?request=my [NC,L]
+
+RewriteRule ^quiz/([0-9]+)/([A-Za-z0-9_-]+)/results/([0-9]+)/?$ quizzes.php?id=$1&t=$2&request=results&r=$3 [NC,L]
+RewriteRule ^quiz/([0-9]+)/([A-Za-z0-9_-]+)/results/?$ quizzes.php?id=$1&t=$2&request=results [NC,L]
+RewriteRule ^quiz/([0-9]+)/([A-Za-z0-9_-]+)/?$ quizzes.php?id=$1&t=$2 [NC,L]
+RewriteRule ^quizzes/([0-9]+)/([A-Za-z0-9_-]+)/page/([0-9]+)/?$ quizzes.php?c=$1&t=$2&page=$3 [NC,L]
+RewriteRule ^quizzes/([0-9]+)/([A-Za-z0-9_-]+)/?$ quizzes.php?c=$1&t=$2 [NC,L]
+RewriteRule ^quizzes/page/([0-9]+)/?$ quizzes.php?page=$1 [NC,L]
+RewriteRule ^quizzes/?$ quizzes.php [NC,L]
+
+
+RewriteRule ^mydetails/([0-9]+)/?$ userdetails.php?id=$1 [NC,L]
+RewriteRule ^mydetails/?$ userdetails.php [NC,L]
+
+RewriteRule ^plans/?$ plans.php [NC,L]
+
+
+RewriteRule ^statistics/([0-9]+)/([A-Za-z0-9_-]+)/?$ statistics.php?id=$1&t=$2 [NC,L]
+
+
+
+
+#RewriteCond %{HTTPS} !on
+#RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+#RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
